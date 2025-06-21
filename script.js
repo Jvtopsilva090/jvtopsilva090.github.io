@@ -1,18 +1,13 @@
-// script.js
 
-document.addEventListener("DOMContentLoaded", function () {
-  const el = document.querySelector("header h1");
-  const texto = el.textContent;
-  el.textContent = "";
-
-  let i = 0;
-  const escrever = () => {
-    if (i < texto.length) {
-      el.textContent += texto.charAt(i);
-      i++;
-      setTimeout(escrever, 100);
-    }
-  };
-
-  escrever();
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section, index) => {
+        section.style.opacity = 0;
+        section.style.transform = "translateY(40px)";
+        setTimeout(() => {
+            section.style.transition = "all 0.8s ease";
+            section.style.opacity = 1;
+            section.style.transform = "translateY(0)";
+        }, 400 * index);
+    });
 });
