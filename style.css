@@ -1,24 +1,26 @@
+/* Importa a fonte futurista Orbitron do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
+/* === Estilo base === */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #000000, #3a0ca3);
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #000000, #3a0ca3); /* degrade preto roxo */
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* === Banner do topo === */
+/* === Header com imagem de banner === */
 header {
   width: 100%;
   padding: 20px;
   text-align: center;
-  background-color: transparent; /* removido background duplicado */
+  background-color: transparent;
   box-shadow: 0 0 10px #3a0ca3;
 }
 
@@ -31,54 +33,153 @@ header {
 }
 
 header h1 {
-    font-size: 3em;
-    text-shadow: 2px 2px 5px black;
+  font-size: 3em;
+  text-shadow: 2px 2px 5px black;
 }
 
 header p {
-    font-size: 1.2em;
-    text-shadow: 1px 1px 3px black;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 3px black;
 }
 
+/* === Seções (Sobre, Projetos, Tecnologias...) === */
 section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    border: 1px solid #3a0ca3;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(58, 12, 163, 0.6);
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #3a0ca3;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(58, 12, 163, 0.6);
 }
 
+/* === Links === */
 a {
-    color: #00f7ff;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
+  color: #00f7ff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
 
 a:hover {
-    color: #f72585;
-    text-shadow: 0 0 8px #f72585;
+  color: #f72585;
+  text-shadow: 0 0 8px #f72585;
 }
 
+/* === Listas === */
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 ul li {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
+/* === Efeito de hover nos itens de tecnologias e projetos === */
 .tech-list li:hover,
 .project-list li:hover {
-    background-color: #b84dff;
-    color: black;
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: 0.3s;
-    border-radius: 5px;
+  background-color: #b84dff;
+  color: black;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+/* Estilo para os links da lista de projetos */
+.project-list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* === Redes Sociais === */
+.social {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social a {
+  color: #ffffff;
+  background-color: #b84dff;
+  padding: 10px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.social a:hover {
+  background-color: #fff;
+  color: #1a001f;
+  transform: scale(1.1);
+}
+
+/* === Rodapé === */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #1a1a1a;
+  box-shadow: 0 -2px 10px #3a0ca3;
+  color: #ccc;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* === Animações === */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-in-left {
+  transform: translateX(-50px);
+  opacity: 0;
+  animation: slideInLeft 1s ease forwards;
+}
+
+.slide-in-right {
+  transform: translateX(50px);
+  opacity: 0;
+  animation: slideInRight 1s ease forwards;
+}
+
+.slide-in-bottom {
+  transform: translateY(50px);
+  opacity: 0;
+  animation: slideInBottom 1s ease forwards;
+}
+
+/* Keyframes para animações */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInBottom {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}    border-radius: 5px;
     padding: 5px 10px;
 }
 
