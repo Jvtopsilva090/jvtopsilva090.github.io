@@ -1,73 +1,424 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio João Vitor</title>
-  <meta name="description" content="Portfólio de João Vitor - Desenvolvedor Backend, Mobile e entusiasta Linux. Projetos, tecnologias e contato." />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Portfólio de João Vitor Ferreira da Silva, desenvolvedor Backend, Mobile e entusiasta de Linux, Windows e automações."
+  />
+
+  <meta
+    name="keywords"
+    content="João Vitor, Desenvolvedor, Java, Flutter, Dart, Backend, Mobile, Linux, Portfólio"
+  />
+
+  <meta name="author" content="João Vitor Ferreira da Silva" />
+  <meta name="theme-color" content="#09090f" />
+
+  <title>João Vitor | Desenvolvedor Backend e Mobile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <script defer src="script.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <img src="banner.png" alt="Banner do João Vitor" class="banner" />
-      <h1>João Vitor</h1>
-      <p>Desenvolvedor Backend | Mobile | Linux | Windows </p>
-    </header>
+  <div class="background-effect"></div>
 
-    <main>
-      <section class="sobre">
-        <h2>👋 Sobre mim</h2>
-        <p>Tenho 21 anos, estudo Análise e Desenvolvimento de Sistemas na PUC Goiás e estou sempre aprendendo algo novo. Adoro backend, automações Linux, Flutter e tudo que envolva resolver problemas com código.</p>
-      </section>
+  <header class="topbar">
+    <div class="topbar-content">
+      <a href="#inicio" class="logo" aria-label="Voltar ao início">
+        JV<span>.</span>
+      </a>
 
-      <section class="tecnologias">
-        <h2>🛠 Tecnologias</h2>
-        <ul class="tech-list">
-          <li>Java</li>
-          <li>Flutter</li>
-          <li>Dart</li>
-          <li>Bash</li>
-          <li>Linux</li>
-          <li>Windows</li>
-          <li>Git/Github</li>
-          <li>PostgreSQL</li>
-          <li>Firebase</li>
-        </ul>
-      </section>
+      <nav class="navigation" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#tecnologias">Tecnologias</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
 
-      <section class="projetos">
-        <h2>🚀 Projetos</h2>
-        <ul class="project-list">
-          <li><a href="https://github.com/Jvtopsilva090/CalculadoraCPL" target="_blank" rel="noopener noreferrer">🧮 Calculadora CPL</a></li>
-          <li><a href="https://github.com/Jvtopsilva090/ProjetoCRUDFACUL" target="_blank" rel="noopener noreferrer">📊 CRUD em dart</a></li>
-        </ul>
-      </section>
+      <button
+        type="button"
+        class="theme-button"
+        id="themeButton"
+        aria-label="Alternar tema"
+        title="Alternar tema"
+      >
+        ☀️
+      </button>
+    </div>
+  </header>
 
-      <section class="frase">
-        <h2>🎯 Frase</h2>
-        <p>“Para os tolos o fim é um Game Over. Para os sábios, o início de uma nova jornada.”</p>
-      </section>
+  <main>
+    <section class="hero section" id="inicio">
+      <div class="hero-content reveal">
+        <div class="hero-text">
+          <span class="hero-tag">Olá, eu sou</span>
 
-      <section class="contato">
-        <h2>📫 Contato</h2>
-        <p>📧 jvtopdasilvinha0901@gmail.com</p>
-        <div class="social">
-          <a href="https://github.com/Jvtopsilva090" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.instagram.com/jv_shelby_0901" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-ferreira-da-silva-5593ab224?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <h1>
+            João Vitor
+            <span>Ferreira da Silva</span>
+          </h1>
+
+          <h2>
+            Desenvolvedor
+            <strong>Backend & Mobile</strong>
+          </h2>
+
+          <p>
+            Desenvolvo soluções modernas, funcionais e intuitivas utilizando
+            Java, Flutter, Dart, bancos de dados e automações. Gosto de
+            transformar problemas reais em sistemas eficientes.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projetos" class="button button-primary">
+              Ver projetos
+            </a>
+
+            <a
+              href="mailto:jvtopdasilvinha0901@gmail.com"
+              class="button button-secondary"
+            >
+              Entrar em contato
+            </a>
+          </div>
+
+          <div class="hero-social">
+            <a
+              href="https://github.com/Jvtopsilva090"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/jo%C3%A3o-vitor-ferreira-da-silva-5593ab224"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              href="https://www.instagram.com/jv_shelby_0901"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+          </div>
         </div>
-      </section>
-    </main>
 
-    <footer>
-      <p>© 2025 João Vitor - Feito com 💜😎 no Termux</p>
-    </footer>
-  </div>
+        <div class="hero-image-container">
+          <div class="image-glow"></div>
+
+          <img
+            src="banner.png"
+            alt="Banner de apresentação de João Vitor"
+            class="hero-image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="section-heading reveal">
+        <span>Conheça um pouco</span>
+        <h2>Sobre mim</h2>
+      </div>
+
+      <div class="about-grid reveal">
+        <article class="about-card main-about-card">
+          <span class="card-icon">👨‍💻</span>
+
+          <h3>Quem sou</h3>
+
+          <p>
+            Tenho 22 anos e estudo Análise e Desenvolvimento de Sistemas na
+            PUC Goiás. Sou apaixonado por tecnologia, desenvolvimento de
+            software e resolução de problemas.
+          </p>
+
+          <p>
+            Tenho interesse especial por desenvolvimento backend, aplicativos
+            mobile, automações, sistemas para Windows e Linux e integração com
+            bancos de dados.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <span class="card-icon">🎯</span>
+
+          <h3>Meu objetivo</h3>
+
+          <p>
+            Criar aplicações úteis, modernas e confiáveis que simplifiquem
+            processos e gerem resultados reais para pessoas e empresas.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <span class="card-icon">📚</span>
+
+          <h3>Aprendizado</h3>
+
+          <p>
+            Estou sempre estudando novas tecnologias, construindo projetos e
+            aprimorando meus conhecimentos em arquitetura, interfaces e
+            desenvolvimento de sistemas.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section technologies-section" id="tecnologias">
+      <div class="section-heading reveal">
+        <span>Ferramentas que utilizo</span>
+        <h2>Tecnologias</h2>
+      </div>
+
+      <div class="technologies-grid reveal">
+        <article class="technology-card">
+          <span class="technology-icon">☕</span>
+          <h3>Java</h3>
+          <p>Backend, APIs, sistemas desktop e orientação a objetos.</p>
+        </article>
+
+        <article class="technology-card">
+          <span class="technology-icon">📱</span>
+          <h3>Flutter</h3>
+          <p>Aplicativos modernos para Android, iOS e outras plataformas.</p>
+        </article>
+
+        <article class="technology-card">
+          <span class="technology-icon">🎯</span>
+          <h3>Dart</h3>
+          <p>Desenvolvimento mobile, interfaces e lógica de aplicações.</p>
+        </article>
+
+        <article class="technology-card">
+          <span class="technology-icon">🐧</span>
+          <h3>Linux e Bash</h3>
+          <p>Automação, terminal, scripts e administração de ambientes.</p>
+        </article>
+
+        <article class="technology-card">
+          <span class="technology-icon">🗄️</span>
+          <h3>Banco de dados</h3>
+          <p>PostgreSQL, Firebase, SQLite, Supabase e modelagem de dados.</p>
+        </article>
+
+        <article class="technology-card">
+          <span class="technology-icon">🔧</span>
+          <h3>Git e GitHub</h3>
+          <p>Versionamento, organização de código e trabalho colaborativo.</p>
+        </article>
+      </div>
+
+      <div class="skills-list reveal" aria-label="Lista de habilidades">
+        <span>Java</span>
+        <span>Spring Boot</span>
+        <span>JavaFX</span>
+        <span>Flutter</span>
+        <span>Dart</span>
+        <span>PostgreSQL</span>
+        <span>SQLite</span>
+        <span>Firebase</span>
+        <span>Supabase</span>
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>Linux</span>
+        <span>Windows</span>
+        <span>Bash</span>
+        <span>REST API</span>
+      </div>
+    </section>
+
+    <section class="section" id="projetos">
+      <div class="section-heading reveal">
+        <span>Alguns dos meus trabalhos</span>
+        <h2>Projetos</h2>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">🧮</span>
+            <span class="project-status">Disponível no GitHub</span>
+          </div>
+
+          <h3>Calculadora CPL</h3>
+
+          <p>
+            Aplicação desenvolvida para realização de cálculos e operações
+            específicas, com foco em organização, praticidade e experiência
+            simples para o usuário.
+          </p>
+
+          <div class="project-technologies">
+            <span>Java</span>
+            <span>Desktop</span>
+            <span>POO</span>
+          </div>
+
+          <a
+            href="https://github.com/Jvtopsilva090/CalculadoraCPL"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            Ver código no GitHub
+            <span>↗</span>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <span class="project-icon">📊</span>
+            <span class="project-status">Disponível no GitHub</span>
+          </div>
+
+          <h3>Projeto CRUD em Dart</h3>
+
+          <p>
+            Projeto voltado para o gerenciamento completo de dados, incluindo
+            criação, leitura, atualização e exclusão de registros.
+          </p>
+
+          <div class="project-technologies">
+            <span>Dart</span>
+            <span>CRUD</span>
+            <span>Banco de dados</span>
+          </div>
+
+          <a
+            href="https://github.com/Jvtopsilva090/ProjetoCRUDFACUL"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            Ver código no GitHub
+            <span>↗</span>
+          </a>
+        </article>
+
+        <article class="project-card project-coming reveal">
+          <div class="project-top">
+            <span class="project-icon">🚀</span>
+            <span class="project-status">Em desenvolvimento</span>
+          </div>
+
+          <h3>Novos projetos</h3>
+
+          <p>
+            Estou desenvolvendo novas aplicações mobile, sistemas de gestão e
+            ferramentas que utilizam automação e inteligência artificial.
+          </p>
+
+          <div class="project-technologies">
+            <span>Flutter</span>
+            <span>Java</span>
+            <span>IA</span>
+          </div>
+
+          <a
+            href="https://github.com/Jvtopsilva090?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            Ver repositórios
+            <span>↗</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-section section reveal">
+      <div class="quote-card">
+        <span class="quote-mark">“</span>
+
+        <blockquote>
+          Para os tolos, o fim é um Game Over. Para os sábios, é o início de
+          uma nova jornada.
+        </blockquote>
+
+        <span class="quote-author">— João Vitor</span>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contato">
+      <div class="contact-card reveal">
+        <div>
+          <span class="contact-tag">Vamos conversar?</span>
+
+          <h2>Tem um projeto ou uma oportunidade?</h2>
+
+          <p>
+            Estou aberto a oportunidades, parcerias e projetos envolvendo
+            desenvolvimento backend, mobile, automações e sistemas.
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a
+            href="mailto:jvtopdasilvinha0901@gmail.com"
+            class="button button-primary"
+          >
+            Enviar e-mail
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/jo%C3%A3o-vitor-ferreira-da-silva-5593ab224"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button-secondary"
+          >
+            Ver LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <p class="contact-email">
+        📧
+        <a href="mailto:jvtopdasilvinha0901@gmail.com">
+          jvtopdasilvinha0901@gmail.com
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <a href="#inicio" class="logo">JV<span>.</span></a>
+
+      <p>
+        © <span id="currentYear"></span> João Vitor Ferreira da Silva.
+        Desenvolvido com 💜 e código.
+      </p>
+    </div>
+
+    <a href="#inicio" class="back-to-top" aria-label="Voltar ao topo">
+      ↑
+    </a>
+  </footer>
 </body>
 
-  </html>
+</html>
