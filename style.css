@@ -731,6 +731,516 @@ img {
 }
 
 /* ======================================================
+   ASSISTENTE DE IA — POSIÇÃO GERAL
+
+   A bolinha fica no canto direito, acima do player.
+   Para subir ou descer, altere o valor de "bottom".
+====================================================== */
+
+.ai-assistant {
+  position: fixed;
+
+  /* Posição horizontal */
+  right: 28px;
+  left: auto;
+
+  /*
+   * O player fica perto de bottom: 22px.
+   * Este valor deixa a IA acima do botão de música.
+   */
+  bottom: 105px;
+
+  z-index: 1300;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+/* ======================================================
+   BOLINHA FLUTUANTE DA IA
+====================================================== */
+
+.ai-floating-button {
+  position: relative;
+
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(139, 92, 246, 0.7);
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.38),
+    0 0 30px rgba(139, 92, 246, 0.35);
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.ai-floating-button:hover {
+  transform: translateY(-4px) scale(1.04);
+
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.44),
+    0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+.ai-floating-button.is-open {
+  transform: rotate(8deg);
+}
+
+.ai-floating-icon {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+/* Bolinha que indica uma nova mensagem */
+
+.ai-notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid var(--background);
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  animation: aiNotificationPulse 1.8s infinite;
+}
+
+/* ======================================================
+   JANELA DO CHAT
+====================================================== */
+
+.ai-chat-panel {
+  width: 370px;
+  max-width: calc(100vw - 30px);
+  height: min(540px, calc(100vh - 190px));
+
+  display: none;
+  grid-template-rows: auto 1fr auto auto;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  background: var(--background-secondary);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.52),
+    0 0 35px rgba(139, 92, 246, 0.13);
+
+  backdrop-filter: blur(22px);
+  transform-origin: bottom right;
+}
+
+.ai-chat-panel.is-visible {
+  display: grid;
+  animation: aiPanelEntrance 260ms ease;
+}
+
+/* ======================================================
+   CABEÇALHO DO CHAT
+====================================================== */
+
+.ai-chat-header {
+  padding: 14px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  border-bottom: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.18),
+      rgba(6, 182, 212, 0.08)
+    );
+}
+
+.ai-chat-identity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.ai-avatar,
+.ai-message-avatar {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+}
+
+.ai-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  font-size: 0.76rem;
+}
+
+.ai-chat-identity > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-chat-identity strong {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.88rem;
+}
+
+.ai-chat-identity small {
+  margin-top: 2px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
+.ai-online-indicator {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: #22c55e;
+
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.75);
+}
+
+.ai-close-button {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  color: var(--text);
+  background: var(--card);
+
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* ======================================================
+   ÁREA DAS MENSAGENS
+====================================================== */
+
+.ai-messages {
+  min-height: 0;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ai-message {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.ai-message-user {
+  justify-content: flex-end;
+}
+
+.ai-message-avatar {
+  width: 29px;
+  height: 29px;
+
+  border-radius: 9px;
+  font-size: 0.56rem;
+}
+
+.ai-message-content {
+  max-width: 80%;
+  padding: 10px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px 15px 15px 4px;
+
+  color: var(--text);
+  background: var(--card);
+
+  font-size: 0.83rem;
+  line-height: 1.55;
+
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.ai-message-user .ai-message-content {
+  border-color: rgba(139, 92, 246, 0.35);
+  border-radius: 15px 15px 4px 15px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #7040e8
+    );
+}
+
+/* Indicador "digitando..." */
+
+.ai-typing {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.ai-typing span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: var(--text-secondary);
+
+  animation: aiTyping 1.2s infinite;
+}
+
+.ai-typing span:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.ai-typing span:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+/* ======================================================
+   PERGUNTAS RÁPIDAS
+====================================================== */
+
+.ai-suggestions {
+  padding: 10px 14px;
+
+  display: flex;
+  gap: 7px;
+
+  overflow-x: auto;
+
+  border-top: 1px solid var(--border);
+}
+
+.ai-suggestions button {
+  padding: 7px 10px;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 999px;
+
+  color: var(--primary-light);
+  background: rgba(139, 92, 246, 0.08);
+
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* ======================================================
+   FORMULÁRIO DE ENVIO
+====================================================== */
+
+.ai-chat-form {
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border-top: 1px solid var(--border);
+}
+
+.ai-chat-form input {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 13px;
+
+  flex: 1;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+
+  color: var(--text);
+  background: var(--card);
+
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.ai-chat-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.13);
+}
+
+.ai-chat-form input::placeholder {
+  color: var(--text-secondary);
+}
+
+.ai-send-button {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  border: 0;
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Texto somente para leitores de tela */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ======================================================
+   ANIMAÇÕES DA IA
+====================================================== */
+
+@keyframes aiPanelEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes aiNotificationPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes aiTyping {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* ======================================================
+   ASSISTENTE NO CELULAR
+====================================================== */
+
+@media (max-width: 720px) {
+  .ai-assistant {
+    right: 16px;
+    left: auto;
+
+    /* Mantém acima do player de música */
+    bottom: 100px;
+  }
+
+  .ai-floating-button {
+    width: 54px;
+    height: 54px;
+  }
+
+  .ai-chat-panel {
+    position: fixed;
+
+    right: 14px;
+    left: 14px;
+    bottom: 168px;
+
+    width: auto;
+    max-width: none;
+
+    height: min(520px, calc(100vh - 195px));
+  }
+}
+
+
+/* ======================================================
    PLAYER DE MÚSICA — POSIÇÃO GERAL
    - Fica fixo no canto inferior direito
    - O painel abre acima do botão
