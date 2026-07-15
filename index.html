@@ -420,6 +420,112 @@
     </a>
   </footer>
 
+  <!-- =====================================================
+     ASSISTENTE VIRTUAL DO PORTFÓLIO
+     Fica acima do botão de música, no canto direito
+====================================================== -->
+
+<div class="ai-assistant" id="aiAssistant">
+  <!-- Janela do chat -->
+  <section
+    class="ai-chat-panel"
+    id="aiChatPanel"
+    aria-hidden="true"
+    aria-labelledby="aiChatTitle"
+  >
+    <header class="ai-chat-header">
+      <div class="ai-chat-identity">
+        <span class="ai-avatar">JV</span>
+
+        <div>
+          <strong id="aiChatTitle">Assistente JV</strong>
+          <small>
+            <span class="ai-online-indicator"></span>
+            Online
+          </small>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="ai-close-button"
+        id="aiCloseButton"
+        aria-label="Fechar assistente"
+      >
+        ×
+      </button>
+    </header>
+
+    <div
+      class="ai-messages"
+      id="aiMessages"
+      aria-live="polite"
+    >
+      <div class="ai-message ai-message-assistant">
+        <span class="ai-message-avatar">JV</span>
+
+        <div class="ai-message-content">
+          Olá! 👋 Sou o assistente virtual do João Vitor.
+
+          Posso apresentar seus projetos, tecnologias, formação e formas de
+          contato.
+        </div>
+      </div>
+    </div>
+
+    <!-- Perguntas rápidas -->
+    <div class="ai-suggestions" id="aiSuggestions">
+      <button type="button" data-question="Quais tecnologias o João utiliza?">
+        Tecnologias
+      </button>
+
+      <button type="button" data-question="Quais são os projetos do João?">
+        Projetos
+      </button>
+
+      <button type="button" data-question="Como entrar em contato com o João?">
+        Contato
+      </button>
+    </div>
+
+    <!-- Formulário de mensagem -->
+    <form class="ai-chat-form" id="aiChatForm">
+      <label class="sr-only" for="aiChatInput">
+        Digite sua pergunta
+      </label>
+
+      <input
+        type="text"
+        id="aiChatInput"
+        placeholder="Pergunte algo sobre o João..."
+        maxlength="300"
+        autocomplete="off"
+        required
+      />
+
+      <button
+        type="submit"
+        class="ai-send-button"
+        aria-label="Enviar pergunta"
+      >
+        ➤
+      </button>
+    </form>
+  </section>
+
+  <!-- Bolinha flutuante -->
+  <button
+    type="button"
+    class="ai-floating-button"
+    id="aiFloatingButton"
+    aria-label="Abrir assistente virtual"
+    aria-expanded="false"
+  >
+    <span class="ai-floating-icon">🤖</span>
+    <span class="ai-notification-dot"></span>
+  </button>
+</div>
+  
   <!-- Player de música -->
   <div class="music-widget" id="musicWidget">
     <button
