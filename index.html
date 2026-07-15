@@ -419,6 +419,76 @@
       ↑
     </a>
   </footer>
+
+  <!-- Player de música -->
+  <div class="music-widget" id="musicWidget">
+    <button
+      type="button"
+      class="music-toggle"
+      id="musicToggle"
+      aria-label="Ligar música"
+      aria-pressed="false"
+    >
+      <span class="music-icon" id="musicIcon">🎸</span>
+
+      <span class="music-information">
+        <strong id="musicStatus">Ligar rock</strong>
+        <small>Música ambiente</small>
+      </span>
+    </button>
+
+    <div
+      class="music-panel"
+      id="musicPanel"
+      aria-hidden="true"
+      aria-labelledby="musicPanelTitle"
+    >
+      <div class="music-panel-header">
+        <div>
+          <strong id="musicPanelTitle">Rock no portfólio</strong>
+          <small>Controle pelo player ou pelo botão</small>
+        </div>
+
+        <button
+          type="button"
+          class="music-close"
+          id="musicClose"
+          aria-label="Minimizar player"
+        >
+          ×
+        </button>
+      </div>
+
+      <div id="youtubePlayer"></div>
+
+      <div class="music-controls">
+        <button
+          type="button"
+          id="musicPlayPause"
+          class="music-control-button"
+        >
+          Tocar
+        </button>
+
+        <label class="volume-control">
+          <span>Volume</span>
+
+          <input
+            type="range"
+            id="musicVolume"
+            min="0"
+            max="100"
+            value="25"
+            aria-label="Volume da música"
+          />
+        </label>
+      </div>
+
+      <p class="music-credit">
+        Reprodução realizada pelo YouTube.
+      </p>
+    </div>
+  </div>
 </body>
 
 </html>
