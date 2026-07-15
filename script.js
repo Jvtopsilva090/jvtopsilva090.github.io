@@ -85,7 +85,298 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initializeMusicPlayer();
+  initializeAiAssistant();
 });
+
+/* ======================================================
+   ASSISTENTE VIRTUAL DO PORTFÓLIO
+
+   Esta versão funciona sem API externa.
+   Ela responde perguntas sobre o João usando informações
+   salvas diretamente no JavaScript.
+====================================================== */
+
+function initializeAiAssistant() {
+  const assistantButton = document.getElementById("aiFloatingButton");
+  const assistantPanel = document.getElementById("aiChatPanel");
+  const closeButton = document.getElementById("aiCloseButton");
+  const chatForm = document.getElementById("aiChatForm");
+  const chatInput = document.getElementById("aiChatInput");
+  const suggestionButtons = document.querySelectorAll(
+    ".ai-suggestions button"
+  );
+
+  if (!assistantButton || !assistantPanel || !chatForm || !chatInput) {
+    return;
+  }
+
+  assistantButton.addEventListener("click", () => {
+    const panelVisible = assistantPanel.classList.contains("is-visible");
+
+    if (panelVisible) {
+      closeAiAssistant();
+    } else {
+      openAiAssistant();
+    }
+  });
+
+  closeButton?.addEventListener("click", closeAiAssistant);
+
+  chatForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const question = chatInput.value.trim();
+
+    if (!question) {
+      return;
+    }
+
+    processAiQuestion(question);
+    chatInput.value = "";
+  });
+
+  suggestionButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const question = button.dataset.question;
+
+      if (question) {
+        processAiQuestion(question);
+      }
+    });
+  });
+}
+
+function openAiAssistant() {
+  const assistantButton = document.getElementById("aiFloatingButton");
+  const assistantPanel = document.getElementById("aiChatPanel");
+  const notificationDot = document.querySelector(".ai-notification-dot");
+  const chatInput = document.getElementById("aiChatInput");
+
+  assistantPanel?.classList.add("is-visible");
+  assistantPanel?.setAttribute("aria-hidden", "false");
+
+  assistantButton?.classList.add("is-open");
+  assistantButton?.setAttribute("aria-expanded", "true");
+
+  if (notificationDot) {
+    notificationDot.style.display = "none";
+  }
+
+  window.setTimeout(() => {
+    chatInput?.focus();
+  }, 250);
+}
+
+function closeAiAssistant() {
+  const assistantButton = document.getElementById("aiFloatingButton");
+  const assistantPanel = document.getElementById("aiChatPanel");
+
+  assistantPanel?.classList.remove("is-visible");
+  assistantPanel?.setAttribute("aria-hidden", "true");
+
+  assistantButton?.classList.remove("is-open");
+  assistantButton?.setAttribute("aria-expanded", "false");
+}
+
+function processAiQuestion(question) {
+  addAiMessage(question, "user");
+  showAiTypingIndicator();
+
+  window.setTimeout(() => {
+    removeAiTypingIndicator();
+
+    const response = generatePortfolioResponse(question);
+
+    addAiMessage(response, "assistant");
+  }, 650);
+}
+
+function addAiMessage(text, sender) {
+  const messagesContainer = document.getElementById("aiMessages");
+
+  if (!messagesContainer) {
+    return;
+  }
+
+  const message = document.createElement("div");
+  message.className = `ai-message ai-message-${sender}`;
+
+  if (sender === "assistant") {
+    const avatar = document.createElement("span");
+    avatar.className = "ai-message-avatar";
+    avatar.textContent = "JV";
+
+    message.appendChild(avatar);
+  }
+
+  const content = document.createElement("div");
+  content.className = "ai-message-content";
+  content.textContent = text;
+
+  message.appendChild(content);
+  messagesContainer.appendChild(message);
+
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function showAiTypingIndicator() {
+  const messagesContainer = document.getElementById("aiMessages");
+
+  if (!messagesContainer) {
+    return;
+  }
+
+  const message = document.createElement("div");
+  message.className = "ai-message ai-message-assistant";
+  message.id = "aiTypingMessage";
+
+  message.innerHTML = `
+    <span class="ai-message-avatar">JV</span>
+
+    <div class="ai-message-content">
+      <span class="ai-typing" aria-label="Digitando">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </div>
+  `;
+
+  messagesContainer.appendChild(message);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function removeAiTypingIndicator() {
+  document.getElementById("aiTypingMessage")?.remove();
+}
+
+/* ======================================================
+   BASE DE RESPOSTAS DO ASSISTENTE
+
+   Para adicionar novos assuntos, crie outra condição.
+====================================================== */
+
+function generatePortfolioResponse(question) {
+  const normalizedQuestion = normalizeAiText(question);
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "tecnologia",
+      "tecnologias",
+      "linguagem",
+      "linguagens",
+      "stack",
+      "java",
+      "flutter",
+      "dart"
+    ])
+  ) {
+    return (
+      "João trabalha principalmente com Java, Spring Boot, JavaFX, " +
+      "Flutter, Dart, PostgreSQL, SQLite, Firebase, Supabase, Git, " +
+      "GitHub, Linux, Windows, Bash e APIs REST."
+    );
+  }
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "projeto",
+      "projetos",
+      "calculadora",
+      "crud",
+      "sistema"
+    ])
+  ) {
+    return (
+      "Entre os projetos do João estão a Calculadora CPL em Java, " +
+      "um CRUD desenvolvido com Dart e Flutter, sistemas de gestão, " +
+      "aplicações mobile e ferramentas de automação. Você pode acessar " +
+      "os repositórios pela seção Projetos deste portfólio."
+    );
+  }
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "contato",
+      "email",
+      "e-mail",
+      "linkedin",
+      "instagram",
+      "falar",
+      "contratar"
+    ])
+  ) {
+    return (
+      "Você pode falar com o João pelo e-mail " +
+      "jvtopdasilvinha0901@gmail.com ou pelo LinkedIn disponível " +
+      "na seção de contato do portfólio."
+    );
+  }
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "formacao",
+      "faculdade",
+      "curso",
+      "puc",
+      "estuda"
+    ])
+  ) {
+    return (
+      "João estuda Análise e Desenvolvimento de Sistemas na PUC Goiás " +
+      "e concentra seus estudos em backend, desenvolvimento mobile, " +
+      "bancos de dados e automação."
+    );
+  }
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "objetivo",
+      "objetivos",
+      "oportunidade",
+      "trabalho",
+      "vaga"
+    ])
+  ) {
+    return (
+      "O objetivo do João é construir aplicações modernas e úteis, " +
+      "participar de projetos relevantes e conquistar oportunidades " +
+      "profissionais em desenvolvimento backend e mobile."
+    );
+  }
+
+  if (
+    includesAiTerm(normalizedQuestion, [
+      "ola",
+      "oi",
+      "bom dia",
+      "boa tarde",
+      "boa noite"
+    ])
+  ) {
+    return (
+      "Olá! 😄 Posso te apresentar as tecnologias, projetos, formação " +
+      "e formas de contato do João Vitor."
+    );
+  }
+
+  return (
+    "Ainda estou aprendendo a responder essa pergunta. Você pode perguntar " +
+    "sobre as tecnologias, projetos, formação, objetivos ou contato do João."
+  );
+}
+
+function normalizeAiText(text) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function includesAiTerm(text, terms) {
+  return terms.some((term) => text.includes(normalizeAiText(term)));
+}
+
 
 /* ======================================================
    PLAYER DE MÚSICA — YOUTUBE
